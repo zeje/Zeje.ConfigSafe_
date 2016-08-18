@@ -1,0 +1,10 @@
+﻿1、打包站点程序
+2、将站点发布到IIS下，举例为“Zeje.ConfigSafe_”
+3、打开目录C:\Windows\Microsoft.NET\Framework\v4.0.30319
+4、在3的基础上的地址栏中输入cmd，将自动打开cmd界面
+5、加密指定节点
+5.1、加密connectionStrings节点
+aspnet_regiis -pe "connectionStrings" -site "Zeje.ConfigSafe_" -app "/" -prov "DataProtectionConfigurationProvider"
+5.2、加密appSettings节点
+aspnet_regiis -pe "appSettings" -site "Zeje.ConfigSafe_" -app "/" -prov "DataProtectionConfigurationProvider"
+5.3、可加密其他节点

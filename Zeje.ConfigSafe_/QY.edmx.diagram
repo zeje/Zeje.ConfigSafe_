@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c29b6945552348e0b0b95a82655edc68" Name="Diagram1">
+        <EntityTypeShape EntityType="Zeje.QYModel.QyAdmin" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="Zeje.QYModel.QyAgent" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Zeje.QYModel.QyAgentSet" Width="1.5" PointX="5.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Zeje.QYModel.QyDepartment" Width="1.5" PointX="3" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Zeje.QYModel.QyEventLocation" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Zeje.QYModel.QyGetImage" Width="1.5" PointX="7.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Zeje.QYModel.QyGetLocation" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Zeje.QYModel.QyGetText" Width="1.5" PointX="9.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Zeje.QYModel.QyGetVideo" Width="1.5" PointX="5.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Zeje.QYModel.QyGetVoice" Width="1.5" PointX="7.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Zeje.QYModel.QySetFile" Width="1.5" PointX="9.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Zeje.QYModel.QySetImage" Width="1.5" PointX="11.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Zeje.QYModel.QySetMpNews" Width="1.5" PointX="0.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Zeje.QYModel.QySetNews" Width="1.5" PointX="2.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Zeje.QYModel.QySetText" Width="1.5" PointX="11.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Zeje.QYModel.QySetVideo" Width="1.5" PointX="11.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Zeje.QYModel.QySetVoice" Width="1.5" PointX="13.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Zeje.QYModel.QySourceMedia" Width="1.5" PointX="4.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Zeje.QYModel.QySourceMpNews" Width="1.5" PointX="13.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Zeje.QYModel.QyTag" Width="1.5" PointX="3" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Zeje.QYModel.QyUser" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Zeje.QYModel.QyUserConfig" Width="1.5" PointX="6.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Zeje.QYModel.QyUserConfigRecord" Width="1.5" PointX="13.75" PointY="9.75" IsExpanded="true" />
+        <AssociationConnector Association="Zeje.QYModel.Qy_R_AdminAgent" ManuallyRouted="false" />
+        <AssociationConnector Association="Zeje.QYModel.Qy_R_AgentUser" ManuallyRouted="false" />
+        <AssociationConnector Association="Zeje.QYModel.Qy_R_DepartmentUser" ManuallyRouted="false" />
+        <AssociationConnector Association="Zeje.QYModel.Qy_R_TagUser" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

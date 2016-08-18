@@ -1,0 +1,31 @@
+﻿@model List<Zeje.ConfigSafe_.QyUser>
+@using System.Configuration
+@{
+    ViewBag.Title = "Web.config加密验证";
+}
+
+<h2>Web.config加密验证</h2>
+
+<b>
+    connectionStrings节点认证 —— EF数据库执行认证
+</b>
+<div>
+    @foreach (var item in Model)
+    {
+        <div>工号：@item.userid  &nbsp;&nbsp;&nbsp;&nbsp; 姓名：@item.name</div>
+    }
+</div>
+<br />
+<b>
+    appSettings节点 —— 获取所有节点
+</b>
+<div>
+    @{
+        var appSettings = System.Configuration.ConfigurationManager.AppSettings;
+    }
+    @foreach (var item in appSettings.AllKeys)
+    {
+        <div>@item —— @appSettings[item]</div>
+    }
+</div>
+

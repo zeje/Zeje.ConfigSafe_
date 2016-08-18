@@ -1,0 +1,1408 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Zeje.QYModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Qy_R_AdminAgent">
+          <Key>
+            <PropertyRef Name="adminid" />
+            <PropertyRef Name="agentid" />
+          </Key>
+          <Property Name="adminid" Type="int" Nullable="false" />
+          <Property Name="agentid" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Qy_R_AgentUser">
+          <Key>
+            <PropertyRef Name="agentid" />
+            <PropertyRef Name="QyUser_userid" />
+          </Key>
+          <Property Name="agentid" Type="int" Nullable="false" />
+          <Property Name="QyUser_userid" Type="varchar" MaxLength="64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Qy_R_DepartmentUser">
+          <Key>
+            <PropertyRef Name="QyDepartment_id" />
+            <PropertyRef Name="QyUser_userid" />
+          </Key>
+          <Property Name="QyDepartment_id" Type="int" Nullable="false" />
+          <Property Name="QyUser_userid" Type="varchar" MaxLength="64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Qy_R_TagUser">
+          <Key>
+            <PropertyRef Name="QyTag_id" />
+            <PropertyRef Name="QyUser_userid" />
+          </Key>
+          <Property Name="QyTag_id" Type="int" Nullable="false" />
+          <Property Name="QyUser_userid" Type="varchar" MaxLength="64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QyAdmin">
+          <Key>
+            <PropertyRef Name="adminid" />
+          </Key>
+          <Property Name="adminid" Type="int" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="128" />
+          <Property Name="secret" Type="varchar" MaxLength="256" />
+          <Property Name="syntime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QyAgent">
+          <Key>
+            <PropertyRef Name="agentid" />
+          </Key>
+          <Property Name="agentid" Type="int" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="128" />
+          <Property Name="square_logo_url" Type="varchar" MaxLength="256" />
+          <Property Name="round_logo_url" Type="varchar" MaxLength="256" />
+          <Property Name="description" Type="nvarchar" MaxLength="128" />
+          <Property Name="close" Type="bit" Nullable="false" />
+          <Property Name="redirect_domain" Type="varchar" MaxLength="50" />
+          <Property Name="report_location_flag" Type="int" />
+          <Property Name="isreportuser" Type="bit" Nullable="false" />
+          <Property Name="isreportenter" Type="bit" Nullable="false" />
+          <Property Name="type" Type="int" Nullable="false" />
+          <Property Name="syntime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QyAgentSet">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="agentid" Type="int" Nullable="false" />
+          <Property Name="token" Type="varchar" MaxLength="50" />
+          <Property Name="aeskey" Type="varchar" MaxLength="256" />
+          <Property Name="login_url" Type="varchar" MaxLength="256" />
+          <Property Name="logintype" Type="int" />
+          <Property Name="isdebug" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QyDepartment">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="128" />
+          <Property Name="parentid" Type="int" Nullable="false" />
+          <Property Name="order" Type="int" Nullable="false" />
+          <Property Name="syntime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QyEventLocation">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ToUserName" Type="varchar" MaxLength="64" />
+          <Property Name="FromUserName" Type="varchar" MaxLength="64" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="MsgType" Type="varchar" MaxLength="50" />
+          <Property Name="Event" Type="varchar" MaxLength="50" />
+          <Property Name="Latitude" Type="decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="Longitude" Type="decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="Maplat" Type="decimal" Precision="18" Scale="6" />
+          <Property Name="Maplng" Type="decimal" Precision="18" Scale="6" />
+          <Property Name="Precision" Type="decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="AgentID" Type="int" Nullable="false" />
+          <Property Name="AddTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QyGetImage">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ToUserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="FromUserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="MsgType" Type="nvarchar" MaxLength="50" />
+          <Property Name="PicUrl" Type="nvarchar" MaxLength="50" />
+          <Property Name="MediaId" Type="nvarchar" MaxLength="50" />
+          <Property Name="MsgId" Type="bigint" />
+          <Property Name="AgentID" Type="int" Nullable="false" />
+          <Property Name="AddTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QyGetLocation">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ToUserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="FromUserName" Type="varchar" MaxLength="200" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="MsgType" Type="varchar" MaxLength="50" />
+          <Property Name="Location_X" Type="decimal" Precision="18" Scale="6" />
+          <Property Name="Location_Y" Type="decimal" Precision="18" Scale="6" />
+          <Property Name="Scale" Type="int" />
+          <Property Name="Label" Type="nvarchar(max)" />
+          <Property Name="MsgId" Type="bigint" />
+          <Property Name="AgentID" Type="int" Nullable="false" />
+          <Property Name="AddTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QyGetText">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ToUserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="FromUserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="MsgType" Type="nvarchar" MaxLength="50" />
+          <Property Name="Content" Type="nvarchar" MaxLength="200" />
+          <Property Name="MsgId" Type="bigint" />
+          <Property Name="AgentID" Type="int" Nullable="false" />
+          <Property Name="AddTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QyGetVideo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ToUserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="FromUserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="MsgType" Type="nvarchar" MaxLength="50" />
+          <Property Name="MediaId" Type="varchar" MaxLength="200" />
+          <Property Name="ThumbMediaId" Type="varchar" MaxLength="200" />
+          <Property Name="MsgId" Type="bigint" />
+          <Property Name="AgentID" Type="int" Nullable="false" />
+          <Property Name="AddTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QyGetVoice">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ToUserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="FromUserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="MsgType" Type="nvarchar" MaxLength="50" />
+          <Property Name="MediaId" Type="nvarchar" MaxLength="50" />
+          <Property Name="Format" Type="nvarchar" MaxLength="50" />
+          <Property Name="MsgId" Type="bigint" />
+          <Property Name="AgentID" Type="int" Nullable="false" />
+          <Property Name="AddTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QySetFile">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="touser" Type="nvarchar(max)" />
+          <Property Name="toparty" Type="nvarchar(max)" />
+          <Property Name="totag" Type="nvarchar(max)" />
+          <Property Name="msgtype" Type="nvarchar" MaxLength="50" />
+          <Property Name="agentid" Type="int" />
+          <Property Name="fileid" Type="int" />
+          <Property Name="safe" Type="bit" />
+          <Property Name="add_time" Type="datetime" />
+          <Property Name="user_name" Type="nvarchar" MaxLength="100" />
+          <Property Name="send_status" Type="int" />
+          <Property Name="send_time" Type="datetime" />
+          <Property Name="send_msg" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="QySetImage">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="touser" Type="nvarchar(max)" />
+          <Property Name="toparty" Type="nvarchar(max)" />
+          <Property Name="totag" Type="nvarchar(max)" />
+          <Property Name="msgtype" Type="nvarchar" MaxLength="50" />
+          <Property Name="agentid" Type="int" />
+          <Property Name="imageid" Type="int" />
+          <Property Name="safe" Type="bit" />
+          <Property Name="add_time" Type="datetime" />
+          <Property Name="user_name" Type="nvarchar" MaxLength="100" />
+          <Property Name="send_status" Type="int" />
+          <Property Name="send_time" Type="datetime" />
+          <Property Name="send_msg" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="QySetMpNews">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="touser" Type="nvarchar(max)" />
+          <Property Name="toparty" Type="nvarchar(max)" />
+          <Property Name="totag" Type="nvarchar(max)" />
+          <Property Name="msgtype" Type="nvarchar" MaxLength="50" />
+          <Property Name="agentid" Type="int" />
+          <Property Name="mpnewsids" Type="nvarchar" MaxLength="128" />
+          <Property Name="safe" Type="bit" />
+          <Property Name="add_time" Type="datetime" />
+          <Property Name="user_name" Type="nvarchar" MaxLength="100" />
+          <Property Name="send_status" Type="int" />
+          <Property Name="send_time" Type="datetime" />
+          <Property Name="send_msg" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="QySetNews">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="touser" Type="nvarchar(max)" />
+          <Property Name="toparty" Type="nvarchar(max)" />
+          <Property Name="totag" Type="nvarchar(max)" />
+          <Property Name="msgtype" Type="nvarchar" MaxLength="50" />
+          <Property Name="agentid" Type="int" />
+          <Property Name="newsids" Type="nvarchar" MaxLength="128" />
+          <Property Name="safe" Type="bit" />
+          <Property Name="add_time" Type="datetime" />
+          <Property Name="user_name" Type="nvarchar" MaxLength="100" />
+          <Property Name="send_status" Type="int" />
+          <Property Name="send_time" Type="datetime" />
+          <Property Name="send_msg" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="QySetText">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="touser" Type="nvarchar(max)" />
+          <Property Name="toparty" Type="nvarchar(max)" />
+          <Property Name="totag" Type="nvarchar(max)" />
+          <Property Name="msgtype" Type="nvarchar" MaxLength="50" />
+          <Property Name="agentid" Type="int" />
+          <Property Name="content" Type="nvarchar(max)" />
+          <Property Name="safe" Type="bit" />
+          <Property Name="add_time" Type="datetime" />
+          <Property Name="user_name" Type="nvarchar" MaxLength="100" />
+          <Property Name="send_status" Type="int" />
+          <Property Name="send_time" Type="datetime" />
+          <Property Name="send_msg" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="QySetVideo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="touser" Type="nvarchar(max)" />
+          <Property Name="toparty" Type="nvarchar(max)" />
+          <Property Name="totag" Type="nvarchar(max)" />
+          <Property Name="msgtype" Type="nvarchar" MaxLength="50" />
+          <Property Name="agentid" Type="int" />
+          <Property Name="videoid" Type="int" />
+          <Property Name="safe" Type="bit" />
+          <Property Name="add_time" Type="datetime" />
+          <Property Name="user_name" Type="nvarchar" MaxLength="100" />
+          <Property Name="send_status" Type="int" />
+          <Property Name="send_time" Type="datetime" />
+          <Property Name="send_msg" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="QySetVoice">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="touser" Type="nvarchar(max)" />
+          <Property Name="toparty" Type="nvarchar(max)" />
+          <Property Name="totag" Type="nvarchar(max)" />
+          <Property Name="msgtype" Type="nvarchar" MaxLength="50" />
+          <Property Name="agentid" Type="int" />
+          <Property Name="voiceid" Type="int" />
+          <Property Name="safe" Type="bit" />
+          <Property Name="add_time" Type="datetime" />
+          <Property Name="send_status" Type="int" />
+          <Property Name="send_time" Type="datetime" />
+          <Property Name="send_msg" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="QySourceMedia">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="is_permanent" />
+            <PropertyRef Name="add_time" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="media_id" Type="nvarchar" MaxLength="50" />
+          <Property Name="media_file_type" Type="nvarchar" MaxLength="50" />
+          <Property Name="media_url" Type="nvarchar" MaxLength="512" />
+          <Property Name="is_permanent" Type="bit" Nullable="false" />
+          <Property Name="add_time" Type="datetime" Nullable="false" />
+          <Property Name="user_name" Type="nvarchar" MaxLength="100" />
+          <Property Name="update_time" Type="datetime" />
+          <Property Name="update_user_name" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="QySourceMpNews">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="add_time" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="thumb_media_id" Type="nvarchar" MaxLength="50" />
+          <Property Name="title" Type="nvarchar" MaxLength="256" />
+          <Property Name="author" Type="nvarchar" MaxLength="128" />
+          <Property Name="digest" Type="nvarchar" MaxLength="512" />
+          <Property Name="content_source_url" Type="nvarchar(max)" />
+          <Property Name="show_cover_pic" Type="nchar" MaxLength="1" />
+          <Property Name="add_time" Type="datetime" Nullable="false" />
+          <Property Name="user_name" Type="nvarchar" MaxLength="100" />
+          <Property Name="update_time" Type="datetime" />
+          <Property Name="update_user_name" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="QyTag">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="tagname" Type="nvarchar" MaxLength="64" />
+          <Property Name="syntime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QyUser">
+          <Key>
+            <PropertyRef Name="userid" />
+          </Key>
+          <Property Name="userid" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="64" />
+          <Property Name="department" Type="nvarchar(max)" />
+          <Property Name="position" Type="nvarchar" MaxLength="64" />
+          <Property Name="mobile" Type="nvarchar" MaxLength="20" />
+          <Property Name="gender" Type="int" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="256" />
+          <Property Name="weixinid" Type="nvarchar" MaxLength="256" />
+          <Property Name="avatar" Type="nvarchar" MaxLength="256" />
+          <Property Name="status" Type="int" />
+          <Property Name="extattr" Type="nvarchar(max)" />
+          <Property Name="syntime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="QyUserConfig">
+          <Key>
+            <PropertyRef Name="configid" />
+          </Key>
+          <Property Name="configid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="strategy" Type="varchar" MaxLength="64" />
+          <Property Name="strategy_name" Type="nvarchar" MaxLength="128" />
+          <Property Name="cfg_key" Type="varchar" MaxLength="64" />
+          <Property Name="cfg_name" Type="nvarchar" MaxLength="128" />
+          <Property Name="cfg_type" Type="varchar" MaxLength="32" />
+          <Property Name="add_time" Type="datetime" Nullable="false" />
+          <Property Name="update_time" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QyUserConfigRecord">
+          <Key>
+            <PropertyRef Name="agentid" />
+            <PropertyRef Name="userid" />
+            <PropertyRef Name="cfg_key" />
+          </Key>
+          <Property Name="agentid" Type="int" Nullable="false" />
+          <Property Name="userid" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="cfg_key" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="cfg_string" Type="varchar" MaxLength="128" />
+          <Property Name="cfg_int" Type="int" />
+          <Property Name="cfg_decimal" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="cfg_float" Type="float" />
+          <Property Name="add_time" Type="datetime" Nullable="false" />
+          <Property Name="update_time" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Qy_R_AdminAgent_QyAdmin">
+          <End Role="QyAdmin" Type="Self.QyAdmin" Multiplicity="1" />
+          <End Role="Qy_R_AdminAgent" Type="Self.Qy_R_AdminAgent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QyAdmin">
+              <PropertyRef Name="adminid" />
+            </Principal>
+            <Dependent Role="Qy_R_AdminAgent">
+              <PropertyRef Name="adminid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Qy_R_AdminAgent_QyAgent">
+          <End Role="QyAgent" Type="Self.QyAgent" Multiplicity="1" />
+          <End Role="Qy_R_AdminAgent" Type="Self.Qy_R_AdminAgent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QyAgent">
+              <PropertyRef Name="agentid" />
+            </Principal>
+            <Dependent Role="Qy_R_AdminAgent">
+              <PropertyRef Name="agentid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Qy_R_AgentUser_QyAgent">
+          <End Role="QyAgent" Type="Self.QyAgent" Multiplicity="1" />
+          <End Role="Qy_R_AgentUser" Type="Self.Qy_R_AgentUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QyAgent">
+              <PropertyRef Name="agentid" />
+            </Principal>
+            <Dependent Role="Qy_R_AgentUser">
+              <PropertyRef Name="agentid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Qy_R_AgentUser_QyUser">
+          <End Role="QyUser" Type="Self.QyUser" Multiplicity="1" />
+          <End Role="Qy_R_AgentUser" Type="Self.Qy_R_AgentUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QyUser">
+              <PropertyRef Name="userid" />
+            </Principal>
+            <Dependent Role="Qy_R_AgentUser">
+              <PropertyRef Name="QyUser_userid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Qy_R_DepartmentUser_QyDepartment">
+          <End Role="QyDepartment" Type="Self.QyDepartment" Multiplicity="1" />
+          <End Role="Qy_R_DepartmentUser" Type="Self.Qy_R_DepartmentUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QyDepartment">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Qy_R_DepartmentUser">
+              <PropertyRef Name="QyDepartment_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Qy_R_DepartmentUser_QyUser">
+          <End Role="QyUser" Type="Self.QyUser" Multiplicity="1" />
+          <End Role="Qy_R_DepartmentUser" Type="Self.Qy_R_DepartmentUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QyUser">
+              <PropertyRef Name="userid" />
+            </Principal>
+            <Dependent Role="Qy_R_DepartmentUser">
+              <PropertyRef Name="QyUser_userid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Qy_R_TagUser_QyTag">
+          <End Role="QyTag" Type="Self.QyTag" Multiplicity="1" />
+          <End Role="Qy_R_TagUser" Type="Self.Qy_R_TagUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QyTag">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Qy_R_TagUser">
+              <PropertyRef Name="QyTag_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Qy_R_TagUser_QyUser">
+          <End Role="QyUser" Type="Self.QyUser" Multiplicity="1" />
+          <End Role="Qy_R_TagUser" Type="Self.Qy_R_TagUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QyUser">
+              <PropertyRef Name="userid" />
+            </Principal>
+            <Dependent Role="Qy_R_TagUser">
+              <PropertyRef Name="QyUser_userid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ZejeQYModelStoreContainer">
+          <EntitySet Name="Qy_R_AdminAgent" EntityType="Self.Qy_R_AdminAgent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Qy_R_AgentUser" EntityType="Self.Qy_R_AgentUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Qy_R_DepartmentUser" EntityType="Self.Qy_R_DepartmentUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Qy_R_TagUser" EntityType="Self.Qy_R_TagUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QyAdmin" EntityType="Self.QyAdmin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QyAgent" EntityType="Self.QyAgent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QyAgentSet" EntityType="Self.QyAgentSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QyDepartment" EntityType="Self.QyDepartment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QyEventLocation" EntityType="Self.QyEventLocation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QyGetImage" EntityType="Self.QyGetImage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QyGetLocation" EntityType="Self.QyGetLocation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QyGetText" EntityType="Self.QyGetText" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QyGetVideo" EntityType="Self.QyGetVideo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QyGetVoice" EntityType="Self.QyGetVoice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QySetFile" EntityType="Self.QySetFile" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QySetImage" EntityType="Self.QySetImage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QySetMpNews" EntityType="Self.QySetMpNews" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QySetNews" EntityType="Self.QySetNews" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QySetText" EntityType="Self.QySetText" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QySetVideo" EntityType="Self.QySetVideo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QySetVoice" EntityType="Self.QySetVoice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QySourceMedia" EntityType="Self.QySourceMedia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QySourceMpNews" EntityType="Self.QySourceMpNews" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QyTag" EntityType="Self.QyTag" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QyUser" EntityType="Self.QyUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QyUserConfig" EntityType="Self.QyUserConfig" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QyUserConfigRecord" EntityType="Self.QyUserConfigRecord" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Qy_R_AdminAgent_QyAdmin" Association="Self.FK_Qy_R_AdminAgent_QyAdmin">
+            <End Role="QyAdmin" EntitySet="QyAdmin" />
+            <End Role="Qy_R_AdminAgent" EntitySet="Qy_R_AdminAgent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Qy_R_AdminAgent_QyAgent" Association="Self.FK_Qy_R_AdminAgent_QyAgent">
+            <End Role="QyAgent" EntitySet="QyAgent" />
+            <End Role="Qy_R_AdminAgent" EntitySet="Qy_R_AdminAgent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Qy_R_AgentUser_QyAgent" Association="Self.FK_Qy_R_AgentUser_QyAgent">
+            <End Role="QyAgent" EntitySet="QyAgent" />
+            <End Role="Qy_R_AgentUser" EntitySet="Qy_R_AgentUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Qy_R_AgentUser_QyUser" Association="Self.FK_Qy_R_AgentUser_QyUser">
+            <End Role="QyUser" EntitySet="QyUser" />
+            <End Role="Qy_R_AgentUser" EntitySet="Qy_R_AgentUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Qy_R_DepartmentUser_QyDepartment" Association="Self.FK_Qy_R_DepartmentUser_QyDepartment">
+            <End Role="QyDepartment" EntitySet="QyDepartment" />
+            <End Role="Qy_R_DepartmentUser" EntitySet="Qy_R_DepartmentUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Qy_R_DepartmentUser_QyUser" Association="Self.FK_Qy_R_DepartmentUser_QyUser">
+            <End Role="QyUser" EntitySet="QyUser" />
+            <End Role="Qy_R_DepartmentUser" EntitySet="Qy_R_DepartmentUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Qy_R_TagUser_QyTag" Association="Self.FK_Qy_R_TagUser_QyTag">
+            <End Role="QyTag" EntitySet="QyTag" />
+            <End Role="Qy_R_TagUser" EntitySet="Qy_R_TagUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Qy_R_TagUser_QyUser" Association="Self.FK_Qy_R_TagUser_QyUser">
+            <End Role="QyUser" EntitySet="QyUser" />
+            <End Role="Qy_R_TagUser" EntitySet="Qy_R_TagUser" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Zeje.QYModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="QyAdmin">
+          <Key>
+            <PropertyRef Name="adminid" />
+          </Key>
+          <Property Name="adminid" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="secret" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="syntime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="QyAgent" Relationship="Self.Qy_R_AdminAgent" FromRole="QyAdmin" ToRole="QyAgent" />
+        </EntityType>
+        <EntityType Name="QyAgent">
+          <Key>
+            <PropertyRef Name="agentid" />
+          </Key>
+          <Property Name="agentid" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="square_logo_url" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="round_logo_url" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="close" Type="Boolean" Nullable="false" />
+          <Property Name="redirect_domain" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="report_location_flag" Type="Int32" />
+          <Property Name="isreportuser" Type="Boolean" Nullable="false" />
+          <Property Name="isreportenter" Type="Boolean" Nullable="false" />
+          <Property Name="type" Type="Int32" Nullable="false" />
+          <Property Name="syntime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="QyAdmin" Relationship="Self.Qy_R_AdminAgent" FromRole="QyAgent" ToRole="QyAdmin" />
+          <NavigationProperty Name="QyUser" Relationship="Self.Qy_R_AgentUser" FromRole="QyAgent" ToRole="QyUser" />
+        </EntityType>
+        <EntityType Name="QyAgentSet">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="agentid" Type="Int32" Nullable="false" />
+          <Property Name="token" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="aeskey" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="login_url" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="logintype" Type="Int32" />
+          <Property Name="isdebug" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QyDepartment">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="parentid" Type="Int32" Nullable="false" />
+          <Property Name="order" Type="Int32" Nullable="false" />
+          <Property Name="syntime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="QyUser" Relationship="Self.Qy_R_DepartmentUser" FromRole="QyDepartment" ToRole="QyUser" />
+        </EntityType>
+        <EntityType Name="QyEventLocation">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ToUserName" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="FromUserName" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="MsgType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Event" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Latitude" Type="Decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="Longitude" Type="Decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="Maplat" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="Maplng" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="Precision" Type="Decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="AgentID" Type="Int32" Nullable="false" />
+          <Property Name="AddTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="QyGetImage">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ToUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FromUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="MsgType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PicUrl" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MediaId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MsgId" Type="Int64" />
+          <Property Name="AgentID" Type="Int32" Nullable="false" />
+          <Property Name="AddTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="QyGetLocation">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ToUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FromUserName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="MsgType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Location_X" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="Location_Y" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="Scale" Type="Int32" />
+          <Property Name="Label" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MsgId" Type="Int64" />
+          <Property Name="AgentID" Type="Int32" Nullable="false" />
+          <Property Name="AddTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="QyGetText">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ToUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FromUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="MsgType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Content" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="MsgId" Type="Int64" />
+          <Property Name="AgentID" Type="Int32" Nullable="false" />
+          <Property Name="AddTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="QyGetVideo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ToUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FromUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="MsgType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MediaId" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ThumbMediaId" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="MsgId" Type="Int64" />
+          <Property Name="AgentID" Type="Int32" Nullable="false" />
+          <Property Name="AddTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="QyGetVoice">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ToUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FromUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="MsgType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MediaId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Format" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MsgId" Type="Int64" />
+          <Property Name="AgentID" Type="Int32" Nullable="false" />
+          <Property Name="AddTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="QySetFile">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="touser" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="toparty" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="totag" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="msgtype" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="agentid" Type="Int32" />
+          <Property Name="fileid" Type="Int32" />
+          <Property Name="safe" Type="Boolean" />
+          <Property Name="add_time" Type="DateTime" Precision="3" />
+          <Property Name="user_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="send_status" Type="Int32" />
+          <Property Name="send_time" Type="DateTime" Precision="3" />
+          <Property Name="send_msg" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="QySetImage">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="touser" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="toparty" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="totag" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="msgtype" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="agentid" Type="Int32" />
+          <Property Name="imageid" Type="Int32" />
+          <Property Name="safe" Type="Boolean" />
+          <Property Name="add_time" Type="DateTime" Precision="3" />
+          <Property Name="user_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="send_status" Type="Int32" />
+          <Property Name="send_time" Type="DateTime" Precision="3" />
+          <Property Name="send_msg" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="QySetMpNews">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="touser" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="toparty" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="totag" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="msgtype" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="agentid" Type="Int32" />
+          <Property Name="mpnewsids" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="safe" Type="Boolean" />
+          <Property Name="add_time" Type="DateTime" Precision="3" />
+          <Property Name="user_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="send_status" Type="Int32" />
+          <Property Name="send_time" Type="DateTime" Precision="3" />
+          <Property Name="send_msg" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="QySetNews">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="touser" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="toparty" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="totag" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="msgtype" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="agentid" Type="Int32" />
+          <Property Name="newsids" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="safe" Type="Boolean" />
+          <Property Name="add_time" Type="DateTime" Precision="3" />
+          <Property Name="user_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="send_status" Type="Int32" />
+          <Property Name="send_time" Type="DateTime" Precision="3" />
+          <Property Name="send_msg" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="QySetText">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="touser" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="toparty" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="totag" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="msgtype" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="agentid" Type="Int32" />
+          <Property Name="content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="safe" Type="Boolean" />
+          <Property Name="add_time" Type="DateTime" Precision="3" />
+          <Property Name="user_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="send_status" Type="Int32" />
+          <Property Name="send_time" Type="DateTime" Precision="3" />
+          <Property Name="send_msg" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="QySetVideo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="touser" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="toparty" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="totag" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="msgtype" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="agentid" Type="Int32" />
+          <Property Name="videoid" Type="Int32" />
+          <Property Name="safe" Type="Boolean" />
+          <Property Name="add_time" Type="DateTime" Precision="3" />
+          <Property Name="user_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="send_status" Type="Int32" />
+          <Property Name="send_time" Type="DateTime" Precision="3" />
+          <Property Name="send_msg" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="QySetVoice">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="touser" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="toparty" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="totag" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="msgtype" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="agentid" Type="Int32" />
+          <Property Name="voiceid" Type="Int32" />
+          <Property Name="safe" Type="Boolean" />
+          <Property Name="add_time" Type="DateTime" Precision="3" />
+          <Property Name="send_status" Type="Int32" />
+          <Property Name="send_time" Type="DateTime" Precision="3" />
+          <Property Name="send_msg" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="QySourceMedia">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="is_permanent" />
+            <PropertyRef Name="add_time" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="media_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="media_file_type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="media_url" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="is_permanent" Type="Boolean" Nullable="false" />
+          <Property Name="add_time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="user_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="update_time" Type="DateTime" Precision="3" />
+          <Property Name="update_user_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="QySourceMpNews">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="add_time" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="thumb_media_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="title" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="author" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="digest" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="content_source_url" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="show_cover_pic" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="add_time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="user_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="update_time" Type="DateTime" Precision="3" />
+          <Property Name="update_user_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="QyTag">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="tagname" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="syntime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="QyUser" Relationship="Self.Qy_R_TagUser" FromRole="QyTag" ToRole="QyUser" />
+        </EntityType>
+        <EntityType Name="QyUser">
+          <Key>
+            <PropertyRef Name="userid" />
+          </Key>
+          <Property Name="userid" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="department" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="position" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="mobile" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="gender" Type="Int32" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="weixinid" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="avatar" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="extattr" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="syntime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="QyAgent" Relationship="Self.Qy_R_AgentUser" FromRole="QyUser" ToRole="QyAgent" />
+          <NavigationProperty Name="QyDepartment" Relationship="Self.Qy_R_DepartmentUser" FromRole="QyUser" ToRole="QyDepartment" />
+          <NavigationProperty Name="QyTag" Relationship="Self.Qy_R_TagUser" FromRole="QyUser" ToRole="QyTag" />
+        </EntityType>
+        <EntityType Name="QyUserConfig">
+          <Key>
+            <PropertyRef Name="configid" />
+          </Key>
+          <Property Name="configid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="strategy" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="strategy_name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="cfg_key" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="cfg_name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="cfg_type" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="add_time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="update_time" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="QyUserConfigRecord">
+          <Key>
+            <PropertyRef Name="agentid" />
+            <PropertyRef Name="userid" />
+            <PropertyRef Name="cfg_key" />
+          </Key>
+          <Property Name="agentid" Type="Int32" Nullable="false" />
+          <Property Name="userid" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cfg_key" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cfg_string" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="cfg_int" Type="Int32" />
+          <Property Name="cfg_decimal" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="cfg_float" Type="Double" />
+          <Property Name="add_time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="update_time" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <Association Name="Qy_R_AdminAgent">
+          <End Role="QyAdmin" Type="Self.QyAdmin" Multiplicity="*" />
+          <End Role="QyAgent" Type="Self.QyAgent" Multiplicity="*" />
+        </Association>
+        <Association Name="Qy_R_AgentUser">
+          <End Role="QyAgent" Type="Self.QyAgent" Multiplicity="*" />
+          <End Role="QyUser" Type="Self.QyUser" Multiplicity="*" />
+        </Association>
+        <Association Name="Qy_R_DepartmentUser">
+          <End Role="QyDepartment" Type="Self.QyDepartment" Multiplicity="*" />
+          <End Role="QyUser" Type="Self.QyUser" Multiplicity="*" />
+        </Association>
+        <Association Name="Qy_R_TagUser">
+          <End Role="QyTag" Type="Self.QyTag" Multiplicity="*" />
+          <End Role="QyUser" Type="Self.QyUser" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="QYEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="QyAdmin" EntityType="Self.QyAdmin" />
+          <EntitySet Name="QyAgent" EntityType="Self.QyAgent" />
+          <EntitySet Name="QyAgentSet" EntityType="Self.QyAgentSet" />
+          <EntitySet Name="QyDepartment" EntityType="Self.QyDepartment" />
+          <EntitySet Name="QyEventLocation" EntityType="Self.QyEventLocation" />
+          <EntitySet Name="QyGetImage" EntityType="Self.QyGetImage" />
+          <EntitySet Name="QyGetLocation" EntityType="Self.QyGetLocation" />
+          <EntitySet Name="QyGetText" EntityType="Self.QyGetText" />
+          <EntitySet Name="QyGetVideo" EntityType="Self.QyGetVideo" />
+          <EntitySet Name="QyGetVoice" EntityType="Self.QyGetVoice" />
+          <EntitySet Name="QySetFile" EntityType="Self.QySetFile" />
+          <EntitySet Name="QySetImage" EntityType="Self.QySetImage" />
+          <EntitySet Name="QySetMpNews" EntityType="Self.QySetMpNews" />
+          <EntitySet Name="QySetNews" EntityType="Self.QySetNews" />
+          <EntitySet Name="QySetText" EntityType="Self.QySetText" />
+          <EntitySet Name="QySetVideo" EntityType="Self.QySetVideo" />
+          <EntitySet Name="QySetVoice" EntityType="Self.QySetVoice" />
+          <EntitySet Name="QySourceMedia" EntityType="Self.QySourceMedia" />
+          <EntitySet Name="QySourceMpNews" EntityType="Self.QySourceMpNews" />
+          <EntitySet Name="QyTag" EntityType="Self.QyTag" />
+          <EntitySet Name="QyUser" EntityType="Self.QyUser" />
+          <EntitySet Name="QyUserConfig" EntityType="Self.QyUserConfig" />
+          <EntitySet Name="QyUserConfigRecord" EntityType="Self.QyUserConfigRecord" />
+          <AssociationSet Name="Qy_R_AdminAgent" Association="Self.Qy_R_AdminAgent">
+            <End Role="QyAdmin" EntitySet="QyAdmin" />
+            <End Role="QyAgent" EntitySet="QyAgent" />
+          </AssociationSet>
+          <AssociationSet Name="Qy_R_AgentUser" Association="Self.Qy_R_AgentUser">
+            <End Role="QyAgent" EntitySet="QyAgent" />
+            <End Role="QyUser" EntitySet="QyUser" />
+          </AssociationSet>
+          <AssociationSet Name="Qy_R_DepartmentUser" Association="Self.Qy_R_DepartmentUser">
+            <End Role="QyDepartment" EntitySet="QyDepartment" />
+            <End Role="QyUser" EntitySet="QyUser" />
+          </AssociationSet>
+          <AssociationSet Name="Qy_R_TagUser" Association="Self.Qy_R_TagUser">
+            <End Role="QyTag" EntitySet="QyTag" />
+            <End Role="QyUser" EntitySet="QyUser" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ZejeQYModelStoreContainer" CdmEntityContainer="QYEntities">
+          <EntitySetMapping Name="QyAdmin">
+            <EntityTypeMapping TypeName="Zeje.QYModel.QyAdmin">
+              <MappingFragment StoreEntitySet="QyAdmin">
+                <ScalarProperty Name="adminid" ColumnName="adminid" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="secret" ColumnName="secret" />
+                <ScalarProperty Name="syntime" ColumnName="syntime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QyAgent">
+            <EntityTypeMapping TypeName="Zeje.QYModel.QyAgent">
+              <MappingFragment StoreEntitySet="QyAgent">
+                <ScalarProperty Name="agentid" ColumnName="agentid" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="square_logo_url" ColumnName="square_logo_url" />
+                <ScalarProperty Name="round_logo_url" ColumnName="round_logo_url" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="close" ColumnName="close" />
+                <ScalarProperty Name="redirect_domain" ColumnName="redirect_domain" />
+                <ScalarProperty Name="report_location_flag" ColumnName="report_location_flag" />
+                <ScalarProperty Name="isreportuser" ColumnName="isreportuser" />
+                <ScalarProperty Name="isreportenter" ColumnName="isreportenter" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="syntime" ColumnName="syntime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QyAgentSet">
+            <EntityTypeMapping TypeName="Zeje.QYModel.QyAgentSet">
+              <MappingFragment StoreEntitySet="QyAgentSet">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="agentid" ColumnName="agentid" />
+                <ScalarProperty Name="token" ColumnName="token" />
+                <ScalarProperty Name="aeskey" ColumnName="aeskey" />
+                <ScalarProperty Name="login_url" ColumnName="login_url" />
+                <ScalarProperty Name="logintype" ColumnName="logintype" />
+                <ScalarProperty Name="isdebug" ColumnName="isdebug" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QyDepartment">
+            <EntityTypeMapping TypeName="Zeje.QYModel.QyDepartment">
+              <MappingFragment StoreEntitySet="QyDepartment">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="parentid" ColumnName="parentid" />
+                <ScalarProperty Name="order" ColumnName="order" />
+                <ScalarProperty Name="syntime" ColumnName="syntime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QyEventLocation">
+            <EntityTypeMapping TypeName="Zeje.QYModel.QyEventLocation">
+              <MappingFragment StoreEntitySet="QyEventLocation">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ToUserName" ColumnName="ToUserName" />
+                <ScalarProperty Name="FromUserName" ColumnName="FromUserName" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="MsgType" ColumnName="MsgType" />
+                <ScalarProperty Name="Event" ColumnName="Event" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Maplat" ColumnName="Maplat" />
+                <ScalarProperty Name="Maplng" ColumnName="Maplng" />
+                <ScalarProperty Name="Precision" ColumnName="Precision" />
+                <ScalarProperty Name="AgentID" ColumnName="AgentID" />
+                <ScalarProperty Name="AddTime" ColumnName="AddTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QyGetImage">
+            <EntityTypeMapping TypeName="Zeje.QYModel.QyGetImage">
+              <MappingFragment StoreEntitySet="QyGetImage">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ToUserName" ColumnName="ToUserName" />
+                <ScalarProperty Name="FromUserName" ColumnName="FromUserName" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="MsgType" ColumnName="MsgType" />
+                <ScalarProperty Name="PicUrl" ColumnName="PicUrl" />
+                <ScalarProperty Name="MediaId" ColumnName="MediaId" />
+                <ScalarProperty Name="MsgId" ColumnName="MsgId" />
+                <ScalarProperty Name="AgentID" ColumnName="AgentID" />
+                <ScalarProperty Name="AddTime" ColumnName="AddTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QyGetLocation">
+            <EntityTypeMapping TypeName="Zeje.QYModel.QyGetLocation">
+              <MappingFragment StoreEntitySet="QyGetLocation">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ToUserName" ColumnName="ToUserName" />
+                <ScalarProperty Name="FromUserName" ColumnName="FromUserName" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="MsgType" ColumnName="MsgType" />
+                <ScalarProperty Name="Location_X" ColumnName="Location_X" />
+                <ScalarProperty Name="Location_Y" ColumnName="Location_Y" />
+                <ScalarProperty Name="Scale" ColumnName="Scale" />
+                <ScalarProperty Name="Label" ColumnName="Label" />
+                <ScalarProperty Name="MsgId" ColumnName="MsgId" />
+                <ScalarProperty Name="AgentID" ColumnName="AgentID" />
+                <ScalarProperty Name="AddTime" ColumnName="AddTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QyGetText">
+            <EntityTypeMapping TypeName="Zeje.QYModel.QyGetText">
+              <MappingFragment StoreEntitySet="QyGetText">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ToUserName" ColumnName="ToUserName" />
+                <ScalarProperty Name="FromUserName" ColumnName="FromUserName" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="MsgType" ColumnName="MsgType" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="MsgId" ColumnName="MsgId" />
+                <ScalarProperty Name="AgentID" ColumnName="AgentID" />
+                <ScalarProperty Name="AddTime" ColumnName="AddTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QyGetVideo">
+            <EntityTypeMapping TypeName="Zeje.QYModel.QyGetVideo">
+              <MappingFragment StoreEntitySet="QyGetVideo">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ToUserName" ColumnName="ToUserName" />
+                <ScalarProperty Name="FromUserName" ColumnName="FromUserName" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="MsgType" ColumnName="MsgType" />
+                <ScalarProperty Name="MediaId" ColumnName="MediaId" />
+                <ScalarProperty Name="ThumbMediaId" ColumnName="ThumbMediaId" />
+                <ScalarProperty Name="MsgId" ColumnName="MsgId" />
+                <ScalarProperty Name="AgentID" ColumnName="AgentID" />
+                <ScalarProperty Name="AddTime" ColumnName="AddTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QyGetVoice">
+            <EntityTypeMapping TypeName="Zeje.QYModel.QyGetVoice">
+              <MappingFragment StoreEntitySet="QyGetVoice">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ToUserName" ColumnName="ToUserName" />
+                <ScalarProperty Name="FromUserName" ColumnName="FromUserName" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="MsgType" ColumnName="MsgType" />
+                <ScalarProperty Name="MediaId" ColumnName="MediaId" />
+                <ScalarProperty Name="Format" ColumnName="Format" />
+                <ScalarProperty Name="MsgId" ColumnName="MsgId" />
+                <ScalarProperty Name="AgentID" ColumnName="AgentID" />
+                <ScalarProperty Name="AddTime" ColumnName="AddTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QySetFile">
+            <EntityTypeMapping TypeName="Zeje.QYModel.QySetFile">
+              <MappingFragment StoreEntitySet="QySetFile">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="touser" ColumnName="touser" />
+                <ScalarProperty Name="toparty" ColumnName="toparty" />
+                <ScalarProperty Name="totag" ColumnName="totag" />
+                <ScalarProperty Name="msgtype" ColumnName="msgtype" />
+                <ScalarProperty Name="agentid" ColumnName="agentid" />
+                <ScalarProperty Name="fileid" ColumnName="fileid" />
+                <ScalarProperty Name="safe" ColumnName="safe" />
+                <ScalarProperty Name="add_time" ColumnName="add_time" />
+                <ScalarProperty Name="user_name" ColumnName="user_name" />
+                <ScalarProperty Name="send_status" ColumnName="send_status" />
+                <ScalarProperty Name="send_time" ColumnName="send_time" />
+                <ScalarProperty Name="send_msg" ColumnName="send_msg" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QySetImage">
+            <EntityTypeMapping TypeName="Zeje.QYModel.QySetImage">
+              <MappingFragment StoreEntitySet="QySetImage">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="touser" ColumnName="touser" />
+                <ScalarProperty Name="toparty" ColumnName="toparty" />
+                <ScalarProperty Name="totag" ColumnName="totag" />
+                <ScalarProperty Name="msgtype" ColumnName="msgtype" />
+                <ScalarProperty Name="agentid" ColumnName="agentid" />
+                <ScalarProperty Name="imageid" ColumnName="imageid" />
+                <ScalarProperty Name="safe" ColumnName="safe" />
+                <ScalarProperty Name="add_time" ColumnName="add_time" />
+                <ScalarProperty Name="user_name" ColumnName="user_name" />
+                <ScalarProperty Name="send_status" ColumnName="send_status" />
+                <ScalarProperty Name="send_time" ColumnName="send_time" />
+                <ScalarProperty Name="send_msg" ColumnName="send_msg" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QySetMpNews">
+            <EntityTypeMapping TypeName="Zeje.QYModel.QySetMpNews">
+              <MappingFragment StoreEntitySet="QySetMpNews">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="touser" ColumnName="touser" />
+                <ScalarProperty Name="toparty" ColumnName="toparty" />
+                <ScalarProperty Name="totag" ColumnName="totag" />
+                <ScalarProperty Name="msgtype" ColumnName="msgtype" />
+                <ScalarProperty Name="agentid" ColumnName="agentid" />
+                <ScalarProperty Name="mpnewsids" ColumnName="mpnewsids" />
+                <ScalarProperty Name="safe" ColumnName="safe" />
+                <ScalarProperty Name="add_time" ColumnName="add_time" />
+                <ScalarProperty Name="user_name" ColumnName="user_name" />
+                <ScalarProperty Name="send_status" ColumnName="send_status" />
+                <ScalarProperty Name="send_time" ColumnName="send_time" />
+                <ScalarProperty Name="send_msg" ColumnName="send_msg" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QySetNews">
+            <EntityTypeMapping TypeName="Zeje.QYModel.QySetNews">
+              <MappingFragment StoreEntitySet="QySetNews">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="touser" ColumnName="touser" />
+                <ScalarProperty Name="toparty" ColumnName="toparty" />
+                <ScalarProperty Name="totag" ColumnName="totag" />
+                <ScalarProperty Name="msgtype" ColumnName="msgtype" />
+                <ScalarProperty Name="agentid" ColumnName="agentid" />
+                <ScalarProperty Name="newsids" ColumnName="newsids" />
+                <ScalarProperty Name="safe" ColumnName="safe" />
+                <ScalarProperty Name="add_time" ColumnName="add_time" />
+                <ScalarProperty Name="user_name" ColumnName="user_name" />
+                <ScalarProperty Name="send_status" ColumnName="send_status" />
+                <ScalarProperty Name="send_time" ColumnName="send_time" />
+                <ScalarProperty Name="send_msg" ColumnName="send_msg" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QySetText">
+            <EntityTypeMapping TypeName="Zeje.QYModel.QySetText">
+              <MappingFragment StoreEntitySet="QySetText">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="touser" ColumnName="touser" />
+                <ScalarProperty Name="toparty" ColumnName="toparty" />
+                <ScalarProperty Name="totag" ColumnName="totag" />
+                <ScalarProperty Name="msgtype" ColumnName="msgtype" />
+                <ScalarProperty Name="agentid" ColumnName="agentid" />
+                <ScalarProperty Name="content" ColumnName="content" />
+                <ScalarProperty Name="safe" ColumnName="safe" />
+                <ScalarProperty Name="add_time" ColumnName="add_time" />
+                <ScalarProperty Name="user_name" ColumnName="user_name" />
+                <ScalarProperty Name="send_status" ColumnName="send_status" />
+                <ScalarProperty Name="send_time" ColumnName="send_time" />
+                <ScalarProperty Name="send_msg" ColumnName="send_msg" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QySetVideo">
+            <EntityTypeMapping TypeName="Zeje.QYModel.QySetVideo">
+              <MappingFragment StoreEntitySet="QySetVideo">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="touser" ColumnName="touser" />
+                <ScalarProperty Name="toparty" ColumnName="toparty" />
+                <ScalarProperty Name="totag" ColumnName="totag" />
+                <ScalarProperty Name="msgtype" ColumnName="msgtype" />
+                <ScalarProperty Name="agentid" ColumnName="agentid" />
+                <ScalarProperty Name="videoid" ColumnName="videoid" />
+                <ScalarProperty Name="safe" ColumnName="safe" />
+                <ScalarProperty Name="add_time" ColumnName="add_time" />
+                <ScalarProperty Name="user_name" ColumnName="user_name" />
+                <ScalarProperty Name="send_status" ColumnName="send_status" />
+                <ScalarProperty Name="send_time" ColumnName="send_time" />
+                <ScalarProperty Name="send_msg" ColumnName="send_msg" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QySetVoice">
+            <EntityTypeMapping TypeName="Zeje.QYModel.QySetVoice">
+              <MappingFragment StoreEntitySet="QySetVoice">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="touser" ColumnName="touser" />
+                <ScalarProperty Name="toparty" ColumnName="toparty" />
+                <ScalarProperty Name="totag" ColumnName="totag" />
+                <ScalarProperty Name="msgtype" ColumnName="msgtype" />
+                <ScalarProperty Name="agentid" ColumnName="agentid" />
+                <ScalarProperty Name="voiceid" ColumnName="voiceid" />
+                <ScalarProperty Name="safe" ColumnName="safe" />
+                <ScalarProperty Name="add_time" ColumnName="add_time" />
+                <ScalarProperty Name="send_status" ColumnName="send_status" />
+                <ScalarProperty Name="send_time" ColumnName="send_time" />
+                <ScalarProperty Name="send_msg" ColumnName="send_msg" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QySourceMedia">
+            <EntityTypeMapping TypeName="Zeje.QYModel.QySourceMedia">
+              <MappingFragment StoreEntitySet="QySourceMedia">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="media_id" ColumnName="media_id" />
+                <ScalarProperty Name="media_file_type" ColumnName="media_file_type" />
+                <ScalarProperty Name="media_url" ColumnName="media_url" />
+                <ScalarProperty Name="is_permanent" ColumnName="is_permanent" />
+                <ScalarProperty Name="add_time" ColumnName="add_time" />
+                <ScalarProperty Name="user_name" ColumnName="user_name" />
+                <ScalarProperty Name="update_time" ColumnName="update_time" />
+                <ScalarProperty Name="update_user_name" ColumnName="update_user_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QySourceMpNews">
+            <EntityTypeMapping TypeName="Zeje.QYModel.QySourceMpNews">
+              <MappingFragment StoreEntitySet="QySourceMpNews">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="thumb_media_id" ColumnName="thumb_media_id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="author" ColumnName="author" />
+                <ScalarProperty Name="digest" ColumnName="digest" />
+                <ScalarProperty Name="content_source_url" ColumnName="content_source_url" />
+                <ScalarProperty Name="show_cover_pic" ColumnName="show_cover_pic" />
+                <ScalarProperty Name="add_time" ColumnName="add_time" />
+                <ScalarProperty Name="user_name" ColumnName="user_name" />
+                <ScalarProperty Name="update_time" ColumnName="update_time" />
+                <ScalarProperty Name="update_user_name" ColumnName="update_user_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QyTag">
+            <EntityTypeMapping TypeName="Zeje.QYModel.QyTag">
+              <MappingFragment StoreEntitySet="QyTag">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="tagname" ColumnName="tagname" />
+                <ScalarProperty Name="syntime" ColumnName="syntime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QyUser">
+            <EntityTypeMapping TypeName="Zeje.QYModel.QyUser">
+              <MappingFragment StoreEntitySet="QyUser">
+                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="department" ColumnName="department" />
+                <ScalarProperty Name="position" ColumnName="position" />
+                <ScalarProperty Name="mobile" ColumnName="mobile" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="weixinid" ColumnName="weixinid" />
+                <ScalarProperty Name="avatar" ColumnName="avatar" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="extattr" ColumnName="extattr" />
+                <ScalarProperty Name="syntime" ColumnName="syntime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QyUserConfig">
+            <EntityTypeMapping TypeName="Zeje.QYModel.QyUserConfig">
+              <MappingFragment StoreEntitySet="QyUserConfig">
+                <ScalarProperty Name="configid" ColumnName="configid" />
+                <ScalarProperty Name="strategy" ColumnName="strategy" />
+                <ScalarProperty Name="strategy_name" ColumnName="strategy_name" />
+                <ScalarProperty Name="cfg_key" ColumnName="cfg_key" />
+                <ScalarProperty Name="cfg_name" ColumnName="cfg_name" />
+                <ScalarProperty Name="cfg_type" ColumnName="cfg_type" />
+                <ScalarProperty Name="add_time" ColumnName="add_time" />
+                <ScalarProperty Name="update_time" ColumnName="update_time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QyUserConfigRecord">
+            <EntityTypeMapping TypeName="Zeje.QYModel.QyUserConfigRecord">
+              <MappingFragment StoreEntitySet="QyUserConfigRecord">
+                <ScalarProperty Name="agentid" ColumnName="agentid" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="cfg_key" ColumnName="cfg_key" />
+                <ScalarProperty Name="cfg_string" ColumnName="cfg_string" />
+                <ScalarProperty Name="cfg_int" ColumnName="cfg_int" />
+                <ScalarProperty Name="cfg_decimal" ColumnName="cfg_decimal" />
+                <ScalarProperty Name="cfg_float" ColumnName="cfg_float" />
+                <ScalarProperty Name="add_time" ColumnName="add_time" />
+                <ScalarProperty Name="update_time" ColumnName="update_time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="Qy_R_AdminAgent" TypeName="Zeje.QYModel.Qy_R_AdminAgent" StoreEntitySet="Qy_R_AdminAgent">
+            <EndProperty Name="QyAdmin">
+              <ScalarProperty Name="adminid" ColumnName="adminid" />
+            </EndProperty>
+            <EndProperty Name="QyAgent">
+              <ScalarProperty Name="agentid" ColumnName="agentid" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="Qy_R_AgentUser" TypeName="Zeje.QYModel.Qy_R_AgentUser" StoreEntitySet="Qy_R_AgentUser">
+            <EndProperty Name="QyAgent">
+              <ScalarProperty Name="agentid" ColumnName="agentid" />
+            </EndProperty>
+            <EndProperty Name="QyUser">
+              <ScalarProperty Name="userid" ColumnName="QyUser_userid" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="Qy_R_DepartmentUser" TypeName="Zeje.QYModel.Qy_R_DepartmentUser" StoreEntitySet="Qy_R_DepartmentUser">
+            <EndProperty Name="QyDepartment">
+              <ScalarProperty Name="id" ColumnName="QyDepartment_id" />
+            </EndProperty>
+            <EndProperty Name="QyUser">
+              <ScalarProperty Name="userid" ColumnName="QyUser_userid" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="Qy_R_TagUser" TypeName="Zeje.QYModel.Qy_R_TagUser" StoreEntitySet="Qy_R_TagUser">
+            <EndProperty Name="QyTag">
+              <ScalarProperty Name="id" ColumnName="QyTag_id" />
+            </EndProperty>
+            <EndProperty Name="QyUser">
+              <ScalarProperty Name="userid" ColumnName="QyUser_userid" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
